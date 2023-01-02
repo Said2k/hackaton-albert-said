@@ -1,18 +1,16 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import AboutUs from "../components/AboutUs/AboutUs";
-import { useAuth } from "../contexts/authContext";
-import { ADMIN } from "../helpers/consts";
-import AdminPage from "../pages/AdminPage";
-import AuthPage from "../pages/AuthPage";
-import CartPage from "../pages/CartPage";
-import ContactsPage from "../pages/ContactsPage";
-import EditProductPage from "../pages/EditProductPage";
-import HomePage from "../pages/HomePage";
-import NotFoundPage from "../pages/NotFoundPage";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
+import AboutUsPage from "../pages/AboutUsPage";
+import OrdersPage from "../pages/OrdersPage";
 import ProductsPage from "../pages/ProductsPage";
-
+import HomePage from '../pages/HomePage'
+import NotFoundPage from "../pages/NotFoundPage";
+import { Navigate, Route, Routes } from "react-router-dom";
+import AuthPage from "../pages/AuthPage";
+import AdminPage from "../pages/AdminPage";
+import { useAuth } from "../contexts/authContext";
+import { ADMIN } from "../helpers/const";
+import EditProductPage from "../pages/EditProductPage";
+import OneProductPage from "../pages/OneProductPage";
 
 
 
@@ -25,7 +23,8 @@ import ProductsPage from "../pages/ProductsPage";
 
 
 const MainRoutes = () => {
-  const { user } = useAuth();
+  const { users } = useAuth();
+  const {user} = users
   const PUBLIC_ROUTES = [
     {
       link: "/",
@@ -33,8 +32,8 @@ const MainRoutes = () => {
       id: 1,
     },
     {
-      link: "/auth",
-      element: <AuthPage />,
+      link: "/about-us",
+      element: <AboutUsPage />,
       id: 2,
     },
     {
@@ -47,26 +46,29 @@ const MainRoutes = () => {
       element: <ProductsPage />,
       id: 4,
     },
+ 
     {
-      link: "/About",
-      element: <AboutUs />,
+      link: "/orders",
+      element: <OrdersPage/>,
       id: 5,
     },
     {
-      link: "/products/:id",
-      element: <ProductDetailsPage />,
-      id: 6,
+      link: '/auth',
+      element: <AuthPage/>,
+      id:6,
     },
     {
-      link: "/cart",
-      element: <CartPage />,
+      link: '/products',
+      element: <ProductsPage/>,
       id: 7,
     },
     {
-      link: '/contacts',
-      element: <ContactsPage />,
-      id: 8
-    }
+      link: '/products/:id',
+      element: <OneProductPage/>,
+      id: 8,
+    },
+   
+
   
   ];
 
@@ -82,7 +84,7 @@ const MainRoutes = () => {
       id: 2,
     },
   ];
-
+  // console.log(user);
   return (
     <>
       <Routes>
