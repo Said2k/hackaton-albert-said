@@ -17,12 +17,17 @@ import { ADMIN } from '../../helpers/const';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useBusket } from '../../contexts/busketContext';
 
 const ProductCard = ({item}) => {
     const navigate = useNavigate('')
     const {deleteProduct} = useProducts()
     const {users}= useAuth()
     const {email} = users.user
+
+  const {addProductToCart, checkProductInCart} = useBusket() 
+
 
     const ExpandMore = styled((props) => {
       const { expand, ...other } = props;
@@ -83,10 +88,21 @@ const ProductCard = ({item}) => {
             </>
         ) : (
             <>
-            <IconButton>
-                <ShoppingCartIcon/>
-                <FavoriteIcon />
+            <IconButton onClick={()=>addProductToCart(item)}>
+
+              {checkProductInCart(item.id)? (
+                <> <ShoppingCartIcon sx={{color: 'brown'}}/></>
+              ):(
+                <>
+                   <AddShoppingCartIcon/>                 
+                </>
+              )}
+               
                 
+                
+            </IconButton>
+            <IconButton>
+              <FavoriteIcon />
             </IconButton>
             </>
         )}

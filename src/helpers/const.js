@@ -5,3 +5,8 @@ export const ADMIN = "said2k@mail.ru"
     GET_PRODUCTS: 'GET_PRODUCTS',
     GET_ONE_PRODUCT: 'GET_ONE_PRODUCT'
  }
+ 
+ export const CART = {
+   GET_CART: 'GET_CART',
+   GET_CART_LENGHT: 'GET_CART_LENGTH',
+ }

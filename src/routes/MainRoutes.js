@@ -11,6 +11,7 @@ import { useAuth } from "../contexts/authContext";
 import { ADMIN } from "../helpers/const";
 import EditProductPage from "../pages/EditProductPage";
 import OneProductPage from "../pages/OneProductPage";
+import BusketPage from "../pages/BusketPage";
 
 
 
@@ -67,6 +68,11 @@ const MainRoutes = () => {
       element: <OneProductPage/>,
       id: 8,
     },
+    {
+      link: '/cart',
+      element: <BusketPage/>,
+      id: 9
+    }
    
 
   

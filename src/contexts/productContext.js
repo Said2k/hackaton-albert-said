@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ACTION, JSON_API } from '../helpers/const';
 
 export const productsContext = createContext()
 
 export const useProducts = () =>{
-  return  useContext(productsContext)
+    return  useContext(productsContext)
 }
 const INIT_STATE = {
     products:[],
@@ -15,7 +16,7 @@ const reducer =(state=INIT_STATE,action)=>{
     switch(action.type){
         case ACTION.GET_PRODUCTS:
             return {...state, products: action.payload};
-        case ACTION.GET_ONE_PRODUCT:
+            case ACTION.GET_ONE_PRODUCT:
             return {...state, oneProduct: action.payload};    
         default :
         return state;
@@ -25,6 +26,8 @@ const reducer =(state=INIT_STATE,action)=>{
 const ContextProductProvider = ({children}) =>{
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const getProducts = async ()=>{
         try {
@@ -86,6 +89,17 @@ const ContextProductProvider = ({children}) =>{
             console.log(error);
         }
     }
+const fetchByParams = async(query,value) =>{
+    const search = new URLSearchParams(location.search)
+
+    if(value == 'all'){
+        search.delete(query)
+    }else{
+        search.set(query,value)
+    }
+    const url = `${location.pathname}?${search.toString()}`
+    navigate(url)
+} 
 
     const values = {
         getProducts,
@@ -95,6 +109,7 @@ const ContextProductProvider = ({children}) =>{
         postProduct,
         getOneProduct,
         editOneProduct,
+        fetchByParams,
     }
 
     return(
