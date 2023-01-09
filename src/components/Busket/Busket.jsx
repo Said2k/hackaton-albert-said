@@ -8,7 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useBusket } from '../../contexts/busketContext';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,6 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function Busket() {
 const {getCart, cart, changeProductCount, deleteCartProduct}= useBusket()
+const navigate = useNavigate()
 
 React.useEffect(()=>{
     getCart()
@@ -84,7 +86,13 @@ console.log(cart);
           ))}
         </TableBody>
       </Table>
-      <Button onClick={resetCart}>Buy ALL {cart?.totalPrice}$</Button>
+      <Grid sx={{display:'flex', flexDirection: 'row-reverse'}}>
+      <Button onClick={()=>{
+        resetCart()
+        navigate('/orders')
+      }}>Buy ALL {cart?.totalPrice}$</Button>
+
+      </Grid>
     </TableContainer>
   );
 }

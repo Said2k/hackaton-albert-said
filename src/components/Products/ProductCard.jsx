@@ -14,19 +14,21 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ADMIN } from '../../helpers/const';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import StarIcon from '@mui/icons-material/Star';
 import { useBusket } from '../../contexts/busketContext';
+import { useFavorites } from '../../contexts/favorites';
 
 const ProductCard = ({item}) => {
     const navigate = useNavigate('')
-    const {deleteProduct} = useProducts()
+    const {deleteProduct,addProductsInFavorites,favorites,} = useProducts()
     const {users}= useAuth()
     const {email} = users.user
 
-  const {addProductToCart, checkProductInCart} = useBusket() 
+  const {addProductToCart, checkProductInCart,} = useBusket() 
 
 
     const ExpandMore = styled((props) => {
@@ -47,32 +49,66 @@ const ProductCard = ({item}) => {
       };
 
 
-    //  console.log(email);
-
+  
+console.log(item);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-        <CardActions sx={{display: 'flex', flexDirection:"row-reverse"}}>
-            <IconButton>
-            <StarBorderIcon/>
-            </IconButton>
+    <Card 
+    sx={{ 
+      width: '25%' }}>
+        <CardActions 
+        sx={{
+          display: 'flex',
+         flexDirection:"row-reverse",
+          justifyContent: 'space-between'}}>
+        {email == ADMIN ? (<></>) : 
+        (<IconButton onClick={()=>addProductsInFavorites(item)}>
+
+          {favorites.products.filter((elem)=>elem.pick.id ==item.id).length? (<StarIcon fontSize='large' sx={{color:'brown'}}/>) : (<StarIcon fontSize='large' sx={{color: 'none'}}/>)}
+          
+        </IconButton>)
+        
+        }
+      <Grid 
+      sx={{
+        
+        border: '2px solid red',
+         width: '20%',
+         color: 'red', textAlign: 'center',
+         fontWeight: 600,
+         padding: '2px',
+         fontSize: '14px',
+         }}>
+        NEW
+      </Grid>
+
+        
            
         </CardActions>
   
-      <CardMedia
-        component="img"
-        height="194"
-        image={item.picture}
-        sx={{cursor: 'pointer'}}
+      <Grid
+        height="194px"
+        sx={{
+          cursor: 'pointer',
+           backgroundImage: `url(${item.picture})`, backgroundPosition: 'center',
+           backgroundSize: '75%' ,
+           width: '100%',
+            backgroundRepeat: 'no-repeat',
+          }}
         onClick={()=>navigate(`/products/${item.id}`)}
-        // alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body1" color="dark" sx={{fontWeight: 600, fontSize: '20px'}}>
+        <Typography 
+        variant="body1" 
+        color="dark" sx={{
+          fontWeight: 600, 
+          fontSize: '20px'}}>
          {item.name}
         </Typography>
         <Typography
-          sx={{ color: "green", fontWeight: "700" }}
+          sx={{ 
+            color: "green", 
+            fontWeight: "700" }}
           gutterBottom
           variant="h5"
           component="div"
@@ -89,17 +125,19 @@ const ProductCard = ({item}) => {
         ) : (
             <>
             <IconButton onClick={()=>addProductToCart(item)}>
-
-              {checkProductInCart(item.id)? (
-                <> <ShoppingCartIcon sx={{color: 'brown'}}/></>
-              ):(
-                <>
-                   <AddShoppingCartIcon/>                 
-                </>
-              )}
-               
-                
-                
+            {checkProductInCart(item.id) ? (
+              <>
+                <ShoppingCartIcon
+                  sx={{
+                    color: "brown",
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <AddShoppingCartIcon />
+              </>
+            )}
             </IconButton>
             <IconButton>
               <FavoriteIcon />

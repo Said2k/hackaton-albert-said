@@ -12,6 +12,7 @@ import { ADMIN } from "../helpers/const";
 import EditProductPage from "../pages/EditProductPage";
 import OneProductPage from "../pages/OneProductPage";
 import BusketPage from "../pages/BusketPage";
+import FavoritesPage from "../pages/FavoritesPage";
 
 
 
@@ -72,6 +73,11 @@ const MainRoutes = () => {
       link: '/cart',
       element: <BusketPage/>,
       id: 9
+    },
+    {
+      link: 'favorite',
+      element: <FavoritesPage/>,
+      id:10,
     }
    
 
@@ -102,7 +108,7 @@ const MainRoutes = () => {
               <Route
                 path={item.link}
                 element={
-                  user.email === ADMIN ? (
+                  user.email == ADMIN ? (
                     item.element
                   ) : (
                     <Navigate replace to="*" />

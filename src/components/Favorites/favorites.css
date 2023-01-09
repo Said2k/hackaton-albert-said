@@ -1,0 +1,53 @@
+.favorites__image{
+    display: flex;
+align-items: center;
+}
+.favorites__info{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+.favorites__info p, h4{
+   margin: 1px;
+    
+}
+.favorites__description{
+   font-size: 13px;
+    
+}
+.favorites__price p{
+   font-size: 16px;
+   font-weight: 600;
+   color: rgb(232, 31, 31);
+   margin-left: 10px;
+   
+    
+}
+.favorites__price{
+    display: flex;
+    align-items: center;
+    color: black;
+    
+}
+#favorites__button{
+    margin-top: 10px;
+    color: #3498db;
+    border: 1px solid  #3498db;
+}
+
+#favorites__button:hover{
+    background-color: #3498db;
+    color: white;
+    
+}
+.favorites__block{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: center;
+flex-direction: column;
+    
+}

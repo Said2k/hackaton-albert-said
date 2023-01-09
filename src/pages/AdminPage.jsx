@@ -6,7 +6,7 @@ import { ADMIN } from '../helpers/const';
 const AdminPage = () => {
 const {users, handleLogout} = useAuth()
 const {user} = users
-
+console.log(user);
     return (
         <div>
             Admin Page
