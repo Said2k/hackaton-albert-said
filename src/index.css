@@ -1,0 +1,16 @@
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background: black !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===================================================== */
+/*  npx json-server -w db.json -p 8000 */
+.nav {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+.page {
+  text-decoration: none;
+}

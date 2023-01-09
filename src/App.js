@@ -1,20 +1,26 @@
 import React from "react";
-import ContextAuthProvider, { useAuth } from "./contexts/authContext";
+import ContextAuthProvider from "./contexts/authContext";
 import BusketContextProvider from "./contexts/busketContext";
 import ContextProductProvider from "./contexts/productContext";
 import MainRoutes from "./routes/MainRoutes";
+import Navbar from "./components/Navbar/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./components/Footer/Footer";
+
+// import Footer from "./components/Footer/FooterStyles";
 
 function App() {
   return (
-
-    <ContextAuthProvider>
-        <ContextProductProvider>
+    <ContextProductProvider>
+      <ContextAuthProvider>
         <BusketContextProvider>
-   <MainRoutes/>
-   </BusketContextProvider>
-   </ContextProductProvider>
-   </ContextAuthProvider>
- 
+          <Navbar />
+          <MainRoutes />
+
+          <Footer />
+        </BusketContextProvider>
+      </ContextAuthProvider>
+    </ContextProductProvider>
   );
 }
 
