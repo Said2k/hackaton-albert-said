@@ -1,13 +1,11 @@
-import React from 'react';
-import { useAuth } from '../contexts/authContext';
-
+import React from "react";
+import Slider from "../components/Carousel/Carousel";
 const HomePage = () => {
-    const {users}=useAuth()
-    return (
-        <div>
-           {users? <h1>{users.email}</h1> : <h1>не авторизован</h1>} 
-        </div>
-    );
+  return (
+    <>
+      <Slider />
+    </>
+  );
 };
 
 export default HomePage;
