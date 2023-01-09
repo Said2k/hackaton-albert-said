@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useBusket } from '../../contexts/busketContext';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -22,33 +18,31 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
-
-
 
 export default function Busket() {
 const {getCart, cart, changeProductCount, deleteCartProduct}= useBusket()
 const navigate = useNavigate()
 
-React.useEffect(()=>{
-    getCart()
-},[])
 
-const resetCart = () =>{
-    localStorage.removeItem('cart')
-    getCart()
-}
+  React.useEffect(() => {
+    getCart();
+  }, []);
 
-console.log(cart);
+  const resetCart = () => {
+    localStorage.removeItem("cart");
+    getCart();
+  };
+
+  console.log(cart);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ borderRadius: "0%" }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -68,19 +62,32 @@ console.log(cart);
               <StyledTableCell component="th" scope="row">
                 <img src={row.item.picture} width="130px" />
               </StyledTableCell>
-              <StyledTableCell sx={{fontWeight: 600}} align="right">{row.item.name}</StyledTableCell>
+              <StyledTableCell sx={{ fontWeight: 600 }} align="right">
+                {row.item.name}
+              </StyledTableCell>
               <StyledTableCell align="right">{row.item.type}</StyledTableCell>
               <StyledTableCell align="right">{row.item.price}</StyledTableCell>
-              <StyledTableCell align="right">{row.item.description}</StyledTableCell>
-              <StyledTableCell align="right"><input type="number" 
-              min={1}
-              max={1000}
-              value={row.count}
-              onChange={(e)=>changeProductCount(e.target.value,row.item.id)}
-               /></StyledTableCell>
-              <StyledTableCell sx={{fontWeight: 600}} align="right">{row.subPrice}</StyledTableCell>
-              <StyledTableCell align='right'>
-                <Button onClick={()=>deleteCartProduct(row.item.id)}>DELETE</Button>
+              <StyledTableCell align="right">
+                {row.item.description}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <input
+                  type="number"
+                  min={1}
+                  max={1000}
+                  value={row.count}
+                  onChange={(e) =>
+                    changeProductCount(e.target.value, row.item.id)
+                  }
+                />
+              </StyledTableCell>
+              <StyledTableCell sx={{ fontWeight: 600 }} align="right">
+                {row.subPrice}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <Button onClick={() => deleteCartProduct(row.item.id)}>
+                  DELETE
+                </Button>
               </StyledTableCell>
             </StyledTableRow>
           ))}

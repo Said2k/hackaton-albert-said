@@ -24,7 +24,7 @@ const FavoriteProduct = () => {
         justifyContent: 'space-around',
         flexWrap: 'wrap',
         alignItems: 'center',
-        height: '400px'}}>
+        height: 'auto'}}>
         {products.map((item)=>
         <Grid 
         sx={{

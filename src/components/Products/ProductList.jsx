@@ -52,7 +52,6 @@ const ProductList = () => {
     // console.log(products);
     return (
        <Grid item  sx={{ width: '100%' , alignItems: 'center', display: "flex", flexWrap: "wrap", flexDirection: 'column' }}>
-        {/* <Paper elevation={5} sx={{p:2}}> */}
             <TextField 
                 fullWidth
                 id='input'
@@ -70,7 +69,7 @@ const ProductList = () => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position='start'>
-                            <SearchIcon  sx={{borderRight: '1px solid black', paddingRight: '18px',color: '#2573ef'}}/>
+                            <SearchIcon  sx={{borderRight: '1px solid black', paddingRight: '18px',color: '#2573ef', width: '50px'}}/>
                         </InputAdornment>
                     )
                 }}

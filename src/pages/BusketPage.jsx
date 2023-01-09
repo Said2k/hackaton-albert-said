@@ -1,11 +1,12 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import Busket from '../components/Busket/Busket';
 
 const BusketPage = () => {
     return (
-        <div>
+        <Box sx={{marginBottom: '150px'}}>
             <Busket/>
-        </div>
+        </Box>
     );
 };
 

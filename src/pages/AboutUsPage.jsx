@@ -1,10 +1,11 @@
+import { Box } from '@mui/material';
 import React from 'react';
 
 const AboutUsPage = () => {
     return (
-        <div>
+        <Box sx={{marginBottom: '150px'}}>
             abuts
-        </div>
+        </Box>
     );
 };
 
