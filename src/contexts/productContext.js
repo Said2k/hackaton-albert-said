@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ACTION, JSON_API } from '../helpers/const';
+import { ACTION, JSON_API,getLengthFavorites, CART } from '../helpers/const';
 
 export const productsContext = createContext()
 
@@ -11,13 +11,33 @@ export const useProducts = () =>{
 const INIT_STATE = {
     products:[],
     oneProduct:{},
-}
+    favorites: JSON.parse(localStorage.getItem('favorites')),
+    favoritesLength: getLengthFavorites(),
+    }
+
 const reducer =(state=INIT_STATE,action)=>{
     switch(action.type){
         case ACTION.GET_PRODUCTS:
-            return {...state, products: action.payload};
+            return {
+                ...state,
+                 products: action.payload};
             case ACTION.GET_ONE_PRODUCT:
-            return {...state, oneProduct: action.payload};    
+            return {
+                ...state, 
+                oneProduct: action.payload};
+                case ACTION.SET_FAVORITES:
+                    return {
+                      ...state,
+                       favorites: action.payload,
+                       favoritesLength: state.favoritesLength +1}
+                       
+                       case 'delete_favorite':
+                        return{
+                            ...state,
+                            
+                             favorites: action.payload,
+                             favoritesLength: state.favoritesLength -1}
+                
         default :
         return state;
     }
@@ -28,10 +48,11 @@ const ContextProductProvider = ({children}) =>{
 
     const location = useLocation()
     const navigate = useNavigate()
+    
 
     const getProducts = async ()=>{
         try {
-            const {data} = await axios(JSON_API)
+            const {data} = await axios(`${JSON_API}${window.location.search}`)
             let action= {
                 type: ACTION.GET_PRODUCTS,
                 payload: data,
@@ -65,7 +86,6 @@ const ContextProductProvider = ({children}) =>{
             console.log(error);
         }
     }
-
     
     const getOneProduct = async (id) =>{
         try {
@@ -101,6 +121,72 @@ const fetchByParams = async(query,value) =>{
     navigate(url)
 } 
 
+const getFavorites =() =>{
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (!favorites) {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          products: [],
+        })
+      );
+      favorites = {
+        products: [],
+      };
+    }
+
+    dispatch({
+      type: ACTION.SET_FAVORITES,
+      payload: favorites,
+    });
+}
+
+const removeProductInFavorites = (id) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+
+    favorites.products = favorites.products.filter((elem) => elem.pick.id !== id);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    // getFavorites()
+    dispatch({
+      type: 'delete_favorite',
+      payload: favorites,
+    });
+  }
+
+  const addProductsInFavorites = (product) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")); 
+    if (!favorites) {
+      favorites = {
+        products: [],
+      };
+    }
+    let newProduct = {
+      pick: product,
+    };
+
+    let productToFind = favorites.products.filter(
+      (elem) => elem.pick.id === product.id
+    );
+
+    if (productToFind.length == 0) {
+      favorites.products.push(newProduct);
+    } else {
+      favorites.products = favorites.products.filter(
+        (elem) => elem.pick.id !== product.id
+      );
+    }
+
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    dispatch({
+     
+      type: ACTION.SET_FAVORITES,
+      payload: favorites,
+    });
+  };
+
+
     const values = {
         getProducts,
         deleteProduct,
@@ -110,7 +196,12 @@ const fetchByParams = async(query,value) =>{
         getOneProduct,
         editOneProduct,
         fetchByParams,
+        removeProductInFavorites,
+        addProductsInFavorites,
+        getFavorites,
+        favorites: state.favorites,
     }
+
 
     return(
         <productsContext.Provider value={values}>

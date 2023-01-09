@@ -4,7 +4,7 @@ import {
     calcTotalPrice,
     getCountProductInCart,
 } from '../helpers/calcFunction'
-import { CART } from '../helpers/const'
+import {  CART,  } from '../helpers/const'
 
 
 const busketContext = createContext()
@@ -13,10 +13,10 @@ export const useBusket =() =>{
     return useContext(busketContext)
 
 }
-
 const INIT_STATE = {
     cart: JSON.parse(localStorage.getItem('cart')),
     cartLength: getCountProductInCart(),
+   
 }
 
 
@@ -24,6 +24,7 @@ function reducer(state=INIT_STATE, action){
     switch(action.type){
         case CART.GET_CART:
             return {...state, cart: action.payload}
+          
             default: 
             return state;
     }
@@ -32,7 +33,7 @@ function reducer(state=INIT_STATE, action){
 
 const BusketContextProvider = ({children}) =>{
     const [state, dispatch] =useReducer(reducer, INIT_STATE);
-
+    
     const getCart= () =>{
         let cart =JSON.parse(localStorage.getItem('cart'))
         if (!cart){
@@ -134,15 +135,22 @@ function deleteCartProduct(id){
     })
 }
 
+
+
+
+
+    
+
 const values = {
 deleteCartProduct,
 getCart,
 changeProductCount,
 addProductToCart,
 checkProductInCart,
-cart: state.cart
+cart: state.cart,
 
 }
+
 
 return <busketContext.Provider value={values}>{children}</busketContext.Provider>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import ContextAuthProvider from "./contexts/authContext";
 import BusketContextProvider from "./contexts/busketContext";
+import FavoriteContextProvider from "./contexts/favorites";
 import ContextProductProvider from "./contexts/productContext";
 import MainRoutes from "./routes/MainRoutes";
 import Navbar from "./components/Navbar/Navbar";
@@ -14,13 +15,16 @@ function App() {
     <ContextProductProvider>
       <ContextAuthProvider>
         <BusketContextProvider>
-          <Navbar />
-          <MainRoutes />
+          <FavoriteContextProvider>
+   <Navbar />
+   <MainRoutes/>
+<Footer />
+   </FavoriteContextProvider>
+   </BusketContextProvider>
+   </ContextAuthProvider>
+   </ContextProductProvider>
+ 
 
-          <Footer />
-        </BusketContextProvider>
-      </ContextAuthProvider>
-    </ContextProductProvider>
   );
 }
 

@@ -2,9 +2,7 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,6 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 // import AccountCircle from "@mui/icons-material/AccountCircle";
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -23,8 +22,9 @@ import { ADMIN } from "../../helpers/const";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 // import { useCart } from "../../contexts/cartContext";
 import logoRog from "../assets/logoRog.png";
-import { Grid } from "@mui/material";
+import { Grid, Toolbar, Typography } from "@mui/material";
 import { useBusket } from "../../contexts/busketContext";
+import { useProducts } from "../../contexts/productContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -78,6 +78,7 @@ export default function Navbar() {
 
   const { users, handleLogout } = useAuth();
   const { getCart, cart } = useBusket();
+  const {favorites} = useProducts()
   const { user } = users;
 
   React.useEffect(() => {
@@ -253,6 +254,16 @@ export default function Navbar() {
           {user ? <Box>{user.email}</Box> : <Box>Не авторизован</Box>}
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+              onClick={() => navigate("/favorite")}
+            >
+              <Badge badgeContent={favorites.products.length} color="error">
+                <BookmarkBorderOutlinedIcon fontSize="medium" />
+              </Badge>
+            </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"

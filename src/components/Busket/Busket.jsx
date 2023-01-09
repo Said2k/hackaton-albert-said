@@ -1,14 +1,11 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useBusket } from "../../contexts/busketContext";
-import { Button } from "@mui/material";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import Paper from '@mui/material/Paper';
+import { useBusket } from '../../contexts/busketContext';
+import { Button, Grid, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -24,14 +21,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
 export default function Busket() {
-  const { getCart, cart, changeProductCount, deleteCartProduct } = useBusket();
+const {getCart, cart, changeProductCount, deleteCartProduct}= useBusket()
+const navigate = useNavigate()
+
 
   React.useEffect(() => {
     getCart();
@@ -95,7 +93,13 @@ export default function Busket() {
           ))}
         </TableBody>
       </Table>
-      <Button onClick={resetCart}>Buy ALL {cart?.totalPrice}$</Button>
+      <Grid sx={{display:'flex', flexDirection: 'row-reverse'}}>
+      <Button onClick={()=>{
+        resetCart()
+        navigate('/orders')
+      }}>Buy ALL {cart?.totalPrice}$</Button>
+
+      </Grid>
     </TableContainer>
   );
 }
