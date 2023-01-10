@@ -6,6 +6,7 @@ export const Box = styled.div`
   background: black;
   background-image: url(${footerPng});
   background-position: center;
+  background-repeat: no-repeat;ls
   bottom: 0;
   width: 100%;
 

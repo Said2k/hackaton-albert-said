@@ -5,17 +5,14 @@ import { useAuth } from "../contexts/authContext";
 import { ADMIN } from "../helpers/const";
 
 const AdminPage = () => {
-const {users, handleLogout} = useAuth()
-const {user} = users
-console.log(user);
-    return (
-        <Box sx={{marginBottom: '150px'}}>
-            {user.email == ADMIN ? <h1>Admin {user.email}</h1> : <h2>{user.email}</h2>}
-            <button onClick={()=>handleLogout()}>Logout</button>
-            <CreateProduct />
-        </Box>
-    );
-
+  const { users, handleLogout } = useAuth();
+  const { user } = users;
+  console.log(user);
+  return (
+    <Box sx={{ marginBottom: "150px" }}>
+      <CreateProduct />
+    </Box>
+  );
 };
 
 export default AdminPage;

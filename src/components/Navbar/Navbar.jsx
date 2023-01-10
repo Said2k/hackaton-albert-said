@@ -8,9 +8,9 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 // import AccountCircle from "@mui/icons-material/AccountCircle";
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -25,6 +25,7 @@ import logoRog from "../assets/logoRog.png";
 import { Grid, Toolbar, Typography } from "@mui/material";
 import { useBusket } from "../../contexts/busketContext";
 import { useProducts } from "../../contexts/productContext";
+import "../../../src/index.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -78,7 +79,7 @@ export default function Navbar() {
 
   const { users, handleLogout } = useAuth();
   const { getCart, cart } = useBusket();
-  const {favorites} = useProducts()
+  const { favorites } = useProducts();
   const { user } = users;
 
   React.useEffect(() => {
@@ -206,6 +207,21 @@ export default function Navbar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      {pages.map((item) => (
+        <MenuItem
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <IconButton>
+            <Link className="page" to={item.link}>
+              <Typography sx={{ color: "black" }}>{item.name}</Typography>
+            </Link>
+          </IconButton>
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -232,9 +248,11 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{
-              display: { xs: "none", sm: "block" },
-            }}
+            sx={
+              {
+                // display: { xs: "none", sm: "block" },
+              }
+            }
           >
             <Link to={"/"}>
               <img src={logoRog} id="logo" width={220} height={50} />
@@ -251,7 +269,11 @@ export default function Navbar() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {user ? <Box>{user.email}</Box> : <Box>Не авторизован</Box>}
+          {user ? (
+            <Box className="email">{user.email}</Box>
+          ) : (
+            <Box className="email">Не авторизован</Box>
+          )}
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
