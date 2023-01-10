@@ -1,0 +1,65 @@
+
+.contact__image {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.contact__title{
+    background-image: url(https://phonoteka.org/uploads/posts/2021-04/1619308612_53-phonoteka_org-p-gori-temnii-fon-61.jpg);
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 450px;
+    /* animation: kvBannerScale 10000ms forwards 1; */
+    /* transform: scale(1.2) translateZ(0px); */
+    animation-name: title;
+    animation-duration: 30s;
+    animation-direction: alternate;
+    display: flex;
+    align-items: center;
+
+}
+
+.contact__title h1{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: inherit;
+    color: #fff;
+}
+
+.contact__map{
+    width:70%; 
+    height: 550px;
+}
+
+.contact__info{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+ @keyframes title {
+    from{
+        background-size: 150%;
+    }
+ 
+
+    to{
+        background-size: 100%;
+    }
+ }
+
+
+ @media all and (max-width: 426px){
+    .contact__info{
+        display: flex;
+        flex-direction: column;
+    }
+    .contact__map{
+        margin: 0;
+        width: 100%;
+    }
+ }

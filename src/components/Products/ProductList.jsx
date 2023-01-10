@@ -5,6 +5,7 @@ import { useProducts } from '../../contexts/productContext';
 import ProductCard from './ProductCard';
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams } from 'react-router-dom';
+import '../Products/ProductList.css'
 
 
 const ProductList = () => {
@@ -52,15 +53,12 @@ const ProductList = () => {
     // console.log(products);
     return (
        <Grid item  sx={{ width: '100%' , alignItems: 'center', display: "flex", flexWrap: "wrap", flexDirection: 'column' }}>
-            <TextField 
+            <TextField  
+            sx={{marginBottom: '30px'}}
+            className='product__input'
                 fullWidth
                 id='input'
                 placeholder='Search'
-                sx={{
-                    width: '40%',
-                    marginBottom: '30px'   
-                }}
-                // label= "Search" 
                 value={searchProduct}
                 onChange={(e)=>{
                     setSearchProduct(e.target.value)
@@ -76,12 +74,8 @@ const ProductList = () => {
             />
 
                 
-            <FormControl sx={{
-                 display: 'flex',
-                padding: '18px',
-                   height: '150px',
-                boxShadow: '0px 0px 4px 0px gray',
-                borderRadius: '20px'
+            <FormControl className='product__filter' sx={{
+                 
                    }}>
                 <Grid height={'50%'} >
 
@@ -103,14 +97,17 @@ const ProductList = () => {
                 <FormControl sx={{
                     marginBottom: '100px'
                     }}>
-            <FormLabel sx={{
+                        <div className='product__range'>
+            <FormLabel  sx={{
                 display:'flex',
                  justifyContent: 'center',
                  fontWeight: 600,
                  color: 'black',
                  marginTop: '10px'
                  }}>Price:</FormLabel>
+
                 <Slider 
+                
                 defaultValue={100}
                  aria-label="Default" valueLabelDisplay="auto" 
                 onChange={(e)=>{
@@ -118,40 +115,33 @@ const ProductList = () => {
                     fetchByParams('price', e.target.value)}
                 }
                 value={rangePrice}
-                max={3000}
+                max={1800}
                 min={50}
                 step={10}
 
                 sx={{width: '250px', height: '7px', color: 'black'}}/>
+
+                </div>
                
             </FormControl>
                 </Grid>
            
             </Grid>
-            </FormControl>
-        
-        {/* </Paper> */}
-       
+            </FormControl>    
 
+            <h1 className='product__h1'>Выберите продукт</h1>   
 
-
-        <Box sx={{
-            width: '100%',
-          display: "flex",
-          justifyContent: 'space-around',
-          flexWrap: "wrap",
-          minHeight: "40vh",
-          gap: "10px",
-          marginTop: '50px'
-        }}>
-            {products.length>0 ? (paramsPage().map((item)=>{
+        <Grid className='product__list'>
+            {products?.length>0 ? (paramsPage().map((item)=>{
                return  <ProductCard item={item} key={item.id}/>
                
             })) : (<CircularProgress color='inherit' />
 
             )}
-        </Box>
-        <Pagination  
+            </Grid>
+
+        <Pagination 
+        className='product__pagginate' 
         sx= {{m:3}}
         count ={count}
         page={page}
@@ -159,6 +149,29 @@ const ProductList = () => {
         shape="rounded"
 
         />
+
+            <div className='block__side' >
+                <div style={{ marginRight: '50px'}} className='block__info'>
+                <h3>Дисплей ROG Nebula</h3>
+            <p>БЫСТРЫЙ, ЯРКИЙ, КРАСОЧНЫЙ ,изумительные цвета, высокая контрастность, плавность отображения динамичного контента – все это предлагают игровые ноутбуки ASUS с передовыми дисплеями. Вы сможете увидеть все так, как задумано авторами, и реагировать на происходящее в игре на шаг впереди оппонентов.</p>
+                </div>
+                <div className='block__img'>
+                    <img  width={'100%'} src="https://dlcdnrog.asus.com/rog/media/1662554060763.webp" alt="" />
+                </div>
+            </div>
+
+            <div className='block__side'>
+            <div style={{ marginRight: '50px'}}  className='block__img'>
+                    <img  width={'100%'} src="https://dlcdnrog.asus.com/rog/media/1647514304141.webp" alt="" />
+                </div>
+                
+                <div className='block__info'>
+                <h3>Rog intelligent cooling</h3>
+            <p>В устройствах серии ROG применяются передовые технологии охлаждения, как аппаратные, так и программные, которые оптимизируются под конкретное сочетание компонентов и конструктивные особенности каждой модели. Инновационные вентиляторы, термоинтерфейс из жидкого металла и интеллектуальные алгоритмы гарантируют защиту от перегрева под любыми нагрузками и в игровых, и в профессиональных приложениях.</p>
+                </div>
+                
+            </div>
+        
        </Grid>
     );
 };

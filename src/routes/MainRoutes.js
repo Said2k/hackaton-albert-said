@@ -17,6 +17,7 @@ import ProductCard from "../components/Products/ProductCard";
 import ProductCards from "../components/ProductCard/ProductCards";
 import RogStrix from "../components/ModelsPC/RogStrix";
 
+
 //! ======== Изменить полностью , код с прошлого проекта ========
 
 const MainRoutes = () => {
@@ -70,10 +71,20 @@ const MainRoutes = () => {
       id: 9,
     },
     {
-      link: "favorite",
-      element: <FavoritesPage />,
-      id: 10,
+
+      link: 'favorite',
+      element: <FavoritesPage/>,
+      id:10,
     },
+    {
+      link : 'contacts',
+      element: <ContactUsPage/>,
+      id: 11,
+    }
+   
+
+  
+
   ];
 
   const PRIVATE_ROUTES = [

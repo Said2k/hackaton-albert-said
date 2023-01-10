@@ -5,6 +5,7 @@ import { useProducts } from '../../contexts/productContext';
 import './favorites.css'
 import ClearIcon from '@mui/icons-material/Clear';
 import { useBusket } from '../../contexts/busketContext';
+import './favorites.css'
 
 const FavoriteProduct = () => {
     const {favorites, removeProductInFavorites,getFavorites} = useProducts()
@@ -18,22 +19,12 @@ const FavoriteProduct = () => {
 
         console.log(favorites.products);
     return (
-        
-    <Box sx={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        height: 'auto'}}>
-        {products.map((item)=>
+        <div className='container__favorite'>
+          
+    
+        {products?.map((item)=>
         <Grid 
-        sx={{
-            display: 'flex' ,
-            width: '40%',
-            justifyContent: 'center',
-            margin: "10px 0 10px 0",
-            
-            }}>
+        className='block__favorite'>
                 
             <Grid 
             sx={{
@@ -42,7 +33,7 @@ const FavoriteProduct = () => {
                     className='favorites__image' >
                     <img  
                     src={item.pick.picture}  
-                    width={200} alt=""  />
+                     alt=""  />
                     </Grid>
             </Grid>
             <Grid sx={{marginLeft: '10px'}}>
@@ -66,9 +57,10 @@ const FavoriteProduct = () => {
             </Grid>
         </Grid>
         )}
-        
+                </div>
 
-    </Box>
+
+    
     );
 };
 

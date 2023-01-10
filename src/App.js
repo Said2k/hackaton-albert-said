@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer/Footer";
 import ProductCard from "./components/Products/ProductCard";
 
+
 // import Footer from "./components/Footer/FooterStyles";
 
 function App() {

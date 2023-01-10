@@ -15,17 +15,17 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ADMIN } from "../../helpers/const";
 import { Button, Grid, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import StarIcon from "@mui/icons-material/Star";
-import { useBusket } from "../../contexts/busketContext";
-import { useFavorites } from "../../contexts/favorites";
+import StarIcon from '@mui/icons-material/Star';
+import { useBusket } from '../../contexts/busketContext';
+import './ProductList.css'
+const ProductCard = ({item}) => {
+    const navigate = useNavigate('')
+    const {deleteProduct,addProductsInFavorites,favorites,} = useProducts()
+    const {users}= useAuth()
+    const {email} = users.user
 
-const ProductCard = ({ item }) => {
-  const navigate = useNavigate("");
-  const { deleteProduct, addProductsInFavorites, favorites } = useProducts();
-  const { users } = useAuth();
-  const { email } = users.user;
+
 
   const { addProductToCart, checkProductInCart } = useBusket();
 
@@ -49,7 +49,25 @@ const ProductCard = ({ item }) => {
   console.log(item);
 
   return (
+
+    <Card className='product__card'>
+        <CardActions 
+        sx={{
+          display: 'flex',
+         flexDirection:"row-reverse",
+          justifyContent: 'space-between'}}>
+        {email == ADMIN ? (<></>) : 
+        (<IconButton onClick={()=>addProductsInFavorites(item)}>
+
+          {favorites.products.filter((elem)=>elem.pick.id ==item.id).length? (<StarIcon fontSize='large' sx={{color:'brown'}}/>) : (<StarIcon fontSize='large' sx={{color: 'none'}}/>)}
+          
+        </IconButton>)
+        
+        }
+      <Grid 
+
     <Card
+
       sx={{
         width: "25%",
       }}

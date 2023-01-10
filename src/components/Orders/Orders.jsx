@@ -1,6 +1,7 @@
 import { Alert, AlertTitle, Box, Button, Grid, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './orders.css'
 
 const Orders = () => {
     const navigate = useNavigate()
@@ -26,14 +27,9 @@ const Orders = () => {
          justifyContent: 'center',
          marginTop: '100px',
          }}>
-            <Grid sx={{
-            width: '40%',
-            padding: '20px',
-            boxShadow: '0px 0px 2px 0px gray',
-            borderRadius: '20px',
-            height: '480px'
-
-            }}>
+            <Grid 
+            className='order__block' 
+           >
                 {alert==0? (null) : (<Alert severity="success">
    <AlertTitle>Success</AlertTitle>
    Ваша оплата прошла — <strong>успешно</strong>
@@ -41,7 +37,7 @@ const Orders = () => {
                 <Grid sx={{
                     textAlign: 'center'
                     }}>
-                    <h2>Оформить заказ:</h2>
+                    <h2>Оформить заказ</h2>
                     <Grid sx={{
                         display: 'flex',
                          flexDirection: 'column'
@@ -126,20 +122,12 @@ const Orders = () => {
                     justifyContent: 'space-between',
                     marginTop: '20px'}}>
                        
-                <Button sx={{
-                    border: '1px solid ',
-                    width: '30%',
-                    borderRadius: '20px'
-                }}
+                <Button className='order__btn' 
                 onClick={()=>{
                     navigate('/products')
                 }}
                 >Вернуться</Button>
-                <Button sx={{
-                    border: '1px solid ',
-                    width: '30%',
-                    borderRadius: '20px'
-                }}
+                <Button className='order__btn'
                 onClick={()=>{
                     successAlert()
                     setOrders({
