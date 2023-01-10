@@ -5,6 +5,7 @@ import { useAuth } from "../contexts/authContext";
 import { ADMIN } from "../helpers/const";
 
 const AdminPage = () => {
+
 const {users, handleLogout} = useAuth()
 const {user} = users
 console.log(user);
@@ -13,6 +14,7 @@ console.log(user);
           <CreateProduct />
         </Box>
     );
+
 
 };
 

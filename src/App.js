@@ -7,6 +7,7 @@ import MainRoutes from "./routes/MainRoutes";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer/Footer";
+import ProductCard from "./components/Products/ProductCard";
 
 
 // import Footer from "./components/Footer/FooterStyles";
@@ -17,15 +18,12 @@ function App() {
       <ContextAuthProvider>
         <BusketContextProvider>
           <FavoriteContextProvider>
-   <Navbar />
-   <MainRoutes/>
-<Footer />
-   </FavoriteContextProvider>
-   </BusketContextProvider>
-   </ContextAuthProvider>
-   </ContextProductProvider>
- 
-
+            <Navbar />
+            <MainRoutes />
+          </FavoriteContextProvider>
+        </BusketContextProvider>
+      </ContextAuthProvider>
+    </ContextProductProvider>
   );
 }
 
