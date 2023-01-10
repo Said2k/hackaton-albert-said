@@ -2,7 +2,7 @@ import React from "react";
 import AboutUsPage from "../pages/AboutUsPage";
 import OrdersPage from "../pages/OrdersPage";
 import ProductsPage from "../pages/ProductsPage";
-import HomePage from '../pages/HomePage'
+import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AuthPage from "../pages/AuthPage";
@@ -13,20 +13,15 @@ import EditProductPage from "../pages/EditProductPage";
 import OneProductPage from "../pages/OneProductPage";
 import BusketPage from "../pages/BusketPage";
 import FavoritesPage from "../pages/FavoritesPage";
-
-
-
-
+import ProductCard from "../components/Products/ProductCard";
+import ProductCards from "../components/ProductCard/ProductCards";
+import RogStrix from "../components/ModelsPC/RogStrix";
 
 //! ======== Изменить полностью , код с прошлого проекта ========
 
-
-
-
-
 const MainRoutes = () => {
   const { users } = useAuth();
-  const {user} = users
+  const { user } = users;
   const PUBLIC_ROUTES = [
     {
       link: "/",
@@ -48,40 +43,37 @@ const MainRoutes = () => {
       element: <ProductsPage />,
       id: 4,
     },
- 
+
     {
       link: "/orders",
-      element: <OrdersPage/>,
+      element: <OrdersPage />,
       id: 5,
     },
     {
-      link: '/auth',
-      element: <AuthPage/>,
-      id:6,
+      link: "/auth",
+      element: <AuthPage />,
+      id: 6,
     },
     {
-      link: '/products',
-      element: <ProductsPage/>,
+      link: "/products",
+      element: <ProductsPage />,
       id: 7,
     },
     {
-      link: '/products/:id',
-      element: <OneProductPage/>,
+      link: "/products/:id",
+      element: <OneProductPage />,
       id: 8,
     },
     {
-      link: '/cart',
-      element: <BusketPage/>,
-      id: 9
+      link: "/cart",
+      element: <BusketPage />,
+      id: 9,
     },
     {
-      link: 'favorite',
-      element: <FavoritesPage/>,
-      id:10,
-    }
-   
-
-  
+      link: "favorite",
+      element: <FavoritesPage />,
+      id: 10,
+    },
   ];
 
   const PRIVATE_ROUTES = [

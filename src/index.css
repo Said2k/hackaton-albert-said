@@ -6,6 +6,7 @@
 
 /* ===================================================== */
 /*  npx json-server -w db.json -p 8000 */
+/* cards */
 .nav {
   width: 60%;
   display: flex;
@@ -14,3 +15,40 @@
 .page {
   text-decoration: none;
 }
+/* cards end */
+/* footer */
+.css-ancrnh-MuiButtonBase-root-MuiIconButton-root {
+  display: none !important;
+}
+@media (max-width: 325px) {
+  .gtgaB {
+    margin-left: 15px !important;
+  }
+  .pEvKL {
+    margin-left: 15px !important;
+  }
+  .dctJzX {
+    font-size: 17px !important;
+  }
+  .bktCTg {
+    font-size: 10px !important;
+  }
+}
+/* footer end */
+/* navbar */
+@media (max-width: 923px) {
+  .nav {
+    display: none !important;
+  }
+}
+
+@media all and (max-width: 426px) {
+  #logo {
+    width: 120px !important;
+    height: 26px !important;
+  }
+  .email {
+    font-size: 10px !important;
+  }
+}
+/* navbar end */
