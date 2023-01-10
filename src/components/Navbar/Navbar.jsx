@@ -25,6 +25,7 @@ import logoRog from "../assets/logoRog.png";
 import { Grid, Toolbar, Typography } from "@mui/material";
 import { useBusket } from "../../contexts/busketContext";
 import { useProducts } from "../../contexts/productContext";
+import { display } from "@mui/system";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -69,7 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = [
   { name: "HOME", link: "/", id: 1 },
   { name: "PRODUCTS", link: "/products", id: 2 },
-  { name: "ABOUT US", link: "/about", id: 3 },
+  { name: "ABOUT US", link: "/about-us", id: 3 },
   { name: "CONTACT US", link: "/contacts", id: 4 },
 ];
 
@@ -206,6 +207,10 @@ export default function Navbar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+  
+     
+      
+      
     </Menu>
   );
 
@@ -286,6 +291,7 @@ export default function Navbar() {
             >
               <PersonOutlineOutlinedIcon fontSize="medium" />
             </IconButton>
+            
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -296,7 +302,10 @@ export default function Navbar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
+              
+              
               <MoreIcon />
+              
             </IconButton>
           </Box>
         </Toolbar>

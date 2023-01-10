@@ -10,9 +10,7 @@ const {user} = users
 console.log(user);
     return (
         <Box sx={{marginBottom: '150px'}}>
-            {user.email == ADMIN ? <h1>Admin {user.email}</h1> : <h2>{user.email}</h2>}
-            <button onClick={()=>handleLogout()}>Logout</button>
-            <CreateProduct />
+          <CreateProduct />
         </Box>
     );
 

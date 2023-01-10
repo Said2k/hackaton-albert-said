@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import { useBusket } from '../../contexts/busketContext';
 import { Button, Grid, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import './busket.css'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,20 +46,26 @@ const navigate = useNavigate()
     <TableContainer component={Paper} sx={{ borderRadius: "0%" }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
-          <TableRow>
+          <TableRow className='block__row'>
             <StyledTableCell>Изображение</StyledTableCell>
             <StyledTableCell align="right">Наименование</StyledTableCell>
             <StyledTableCell align="right">Компания</StyledTableCell>
+
             <StyledTableCell align="right">Цена</StyledTableCell>
-            <StyledTableCell align="right">Информация</StyledTableCell>
-            <StyledTableCell align="right">Кол-во</StyledTableCell>
+
+           
+              <StyledTableCell sx={{display: {md: 'block', xs: 'none'}}} className='block__td' align="right">   Информация
+              </StyledTableCell>
+              
+            
+            <StyledTableCell className='td__kol' align="right"><span>Кол-во</span></StyledTableCell>
             <StyledTableCell align="right">Сумма</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {cart?.products.map((row) => (
-            <StyledTableRow key={row.item.id}>
+            <StyledTableRow className='block__body' key={row.item.id}>
               <StyledTableCell component="th" scope="row">
                 <img src={row.item.picture} width="130px" />
               </StyledTableCell>
@@ -67,9 +74,10 @@ const navigate = useNavigate()
               </StyledTableCell>
               <StyledTableCell align="right">{row.item.type}</StyledTableCell>
               <StyledTableCell align="right">{row.item.price}</StyledTableCell>
-              <StyledTableCell align="right">
+              <div className='td__desc' ><StyledTableCell align="right">
                 {row.item.description}
-              </StyledTableCell>
+              </StyledTableCell></div>
+              
               <StyledTableCell align="right">
                 <input
                   type="number"

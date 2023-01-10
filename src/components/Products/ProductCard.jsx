@@ -15,12 +15,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ADMIN } from '../../helpers/const';
 import { Button, Grid, Typography } from '@mui/material';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import StarIcon from '@mui/icons-material/Star';
 import { useBusket } from '../../contexts/busketContext';
-import { useFavorites } from '../../contexts/favorites';
-
+import './ProductList.css'
 const ProductCard = ({item}) => {
     const navigate = useNavigate('')
     const {deleteProduct,addProductsInFavorites,favorites,} = useProducts()
@@ -52,9 +50,7 @@ const ProductCard = ({item}) => {
 console.log(item);
 
   return (
-    <Card 
-    sx={{ 
-      width: '25%' }}>
+    <Card className='product__card'>
         <CardActions 
         sx={{
           display: 'flex',

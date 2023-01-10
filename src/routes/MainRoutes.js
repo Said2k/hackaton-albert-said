@@ -13,6 +13,7 @@ import EditProductPage from "../pages/EditProductPage";
 import OneProductPage from "../pages/OneProductPage";
 import BusketPage from "../pages/BusketPage";
 import FavoritesPage from "../pages/FavoritesPage";
+import ContactUsPage from "../pages/ContactUsPage";
 
 
 
@@ -78,6 +79,11 @@ const MainRoutes = () => {
       link: 'favorite',
       element: <FavoritesPage/>,
       id:10,
+    },
+    {
+      link : 'contacts',
+      element: <ContactUsPage/>,
+      id: 11,
     }
    
 
