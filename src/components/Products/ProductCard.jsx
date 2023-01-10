@@ -65,14 +65,12 @@ const ProductCard = ({item}) => {
         
         }
       <Grid 
-
-    <Card
-
-      sx={{
+        sx={{
         width: "25%",
       }}
-    >
-      <CardActions
+    >NEW
+    </Grid>
+      {/* <CardActions
         sx={{
           display: "flex",
           flexDirection: "row-reverse",
@@ -103,7 +101,7 @@ const ProductCard = ({item}) => {
           }}
         >
           NEW
-        </Grid>
+        </Grid> */}
       </CardActions>
 
       <Grid
