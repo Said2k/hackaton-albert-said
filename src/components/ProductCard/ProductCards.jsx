@@ -76,7 +76,7 @@ const ProductCards = () => {
           </div>
         </nav>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

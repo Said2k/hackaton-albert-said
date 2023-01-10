@@ -20,6 +20,7 @@ function App() {
           <FavoriteContextProvider>
             <Navbar />
             <MainRoutes />
+            <Footer/>
           </FavoriteContextProvider>
         </BusketContextProvider>
       </ContextAuthProvider>

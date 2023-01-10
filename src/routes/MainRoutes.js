@@ -16,6 +16,7 @@ import FavoritesPage from "../pages/FavoritesPage";
 import ProductCard from "../components/Products/ProductCard";
 import ProductCards from "../components/ProductCard/ProductCards";
 import RogStrix from "../components/ModelsPC/RogStrix";
+import ContactUsPage from "../pages/ContactUsPage";
 
 
 //! ======== Изменить полностью , код с прошлого проекта ========
